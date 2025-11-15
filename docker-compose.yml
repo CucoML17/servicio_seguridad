@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  #1. Microservicio de Autenticación (authservicio)
+  authservicio:
+
+    build: authservicioD 
+    mem_limit: 512m
+    #Mapeo del puerto de la aplicación (3013) al puerto del host (3013)
+    ports:
+      - "3013:3013"
+    environment:
+      #La URL apunta al nombre del servicio de MySQL ('auth_db') dentro de la red Docker
+      DB_URL: jdbc:mysql://auth_db:3306/authfondas?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USER_NAME: root
+      DB_PASSWORD: carlos12345678
+      JWT_SECRET: UnaClavePorDefectoDeEmergenciaParaQueArranqueElServicioYSeaLoSuficientementeLarga
+
+      
+    restart: always
+    
+    depends_on:
+      auth_db:
+        condition: service_healthy
+
+  #2. Base de Datos MySQL para el Servicio de Auth
+  auth_db:
+    image: mysql:8.3.0
+    #Mapeo del puerto para acceso externo
+    ports:
+      - "3308:3306"
+    environment:
+      #Variables para inicializar el contenedor MySQL
+      MYSQL_ROOT_PASSWORD: carlos12345678
+      MYSQL_PASSWORD: carlos12345678
+      #Nombre de la BD que la aplicación usará
+      MYSQL_DATABASE: authfondas
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
