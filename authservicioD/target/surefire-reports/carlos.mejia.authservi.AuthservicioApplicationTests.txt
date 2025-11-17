@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: carlos.mejia.authservi.AuthservicioApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 35.97 s -- in carlos.mejia.authservi.AuthservicioApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 32.72 s -- in carlos.mejia.authservi.AuthservicioApplicationTests

@@ -20,6 +20,7 @@ import carlos.mejia.authservi.dto.LoginRequestDto;
 import carlos.mejia.authservi.dto.PerfilDto;
 import carlos.mejia.authservi.dto.RegistroRequestDto;
 import carlos.mejia.authservi.dto.UsuarioResponseDto;
+import carlos.mejia.authservi.dto.UsuarioUpdateCredencialesRequestDto;
 import carlos.mejia.authservi.dto.UsuarioUpdateRequestDto;
 import carlos.mejia.authservi.service.AuthService;
 import carlos.mejia.authservi.service.PerfilRolService;
@@ -153,5 +154,19 @@ public class AuthController {
         UsuarioResponseDto updatedDto = usuarioService.toggleEstatus(idUsuario);
         return ResponseEntity.ok(updatedDto);
     }    
+    
+    @PutMapping("/actualiza/credenciales/usuario/{id}")
+    public ResponseEntity<UsuarioResponseDto> updateUsuarioCredenciales(
+        @PathVariable("id") Integer idUsuario,
+        @RequestBody UsuarioUpdateCredencialesRequestDto request) {
+      try {
+        UsuarioResponseDto usuarioActualizado = authService.updateUsuarioCredenciales(idUsuario, request);
+        return new ResponseEntity<>(usuarioActualizado, HttpStatus.OK); // 200 OK
+      } catch (RuntimeException e) {
+        // Manejar errores como Usuario no encontrado o Username ya en uso
+        // Podrías refinar a 404 NOT FOUND para el ID y 400 BAD REQUEST para el username duplicado
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST); 
+      }
+    }        
     
 }

@@ -94,8 +94,8 @@ public class SecurityConfig {
                 // PROTEGIDO: Registro de empleados (Requiere token de Admin/Supervisor)
                 .requestMatchers("/api/auth/registrar/empleados").hasAnyAuthority("Administrador", "Supervisor")
                 
-                .requestMatchers("/api/auth/perfiles").hasAnyAuthority("Administrador", "Supervisor")
-                .requestMatchers("/api/auth/actualiza/sincontra/usuario/**").hasAnyAuthority("Administrador", "Supervisor")
+                .requestMatchers("/api/auth/perfiles").hasAnyAuthority("Administrador", "Supervisor", "Cajero", "Mesero")
+                .requestMatchers("/api/auth/actualiza/sincontra/usuario/**").hasAnyAuthority("Administrador", "Supervisor", "Cliente", "Cajero", "Mesero")
                 
                 .requestMatchers("/api/auth/registrar").hasAnyAuthority("Administrador", "Supervisor")
                 

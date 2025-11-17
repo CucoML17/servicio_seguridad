@@ -9,6 +9,7 @@ C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservic
 C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservicioD\src\main\java\carlos\mejia\authservi\dto\PerfilResponseDto.java
 C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservicioD\src\main\java\carlos\mejia\authservi\dto\RegistroRequestDto.java
 C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservicioD\src\main\java\carlos\mejia\authservi\dto\UsuarioResponseDto.java
+C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservicioD\src\main\java\carlos\mejia\authservi\dto\UsuarioUpdateCredencialesRequestDto.java
 C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservicioD\src\main\java\carlos\mejia\authservi\dto\UsuarioUpdateRequestDto.java
 C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservicioD\src\main\java\carlos\mejia\authservi\entity\Perfil.java
 C:\Users\bambi\Documents\workspace-spring-tool-suite-4-4.27.0.RELEASE\authservicioD\src\main\java\carlos\mejia\authservi\entity\Usuario.java

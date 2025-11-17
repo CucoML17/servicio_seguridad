@@ -4,6 +4,7 @@ package carlos.mejia.authservi.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +18,7 @@ import carlos.mejia.authservi.dto.JwtResponseDto;
 import carlos.mejia.authservi.dto.LoginRequestDto;
 import carlos.mejia.authservi.dto.RegistroRequestDto;
 import carlos.mejia.authservi.dto.UsuarioResponseDto;
+import carlos.mejia.authservi.dto.UsuarioUpdateCredencialesRequestDto;
 import carlos.mejia.authservi.dto.UsuarioUpdateRequestDto;
 import carlos.mejia.authservi.entity.Perfil;
 import carlos.mejia.authservi.entity.Usuario;
@@ -141,5 +143,30 @@ public class AuthService {
         // 5. Mapear y retornar
         return UsuarioMapper.mapToResponseDto(usuarioActualizado);
     }
+    
+    
+    public UsuarioResponseDto updateUsuarioCredenciales(Integer idUsuario, UsuarioUpdateCredencialesRequestDto request) {
+        
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + idUsuario));
+        
+        // 1. Validar que el nuevo username no esté ya en uso por otro usuario
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByUsername(request.getUsername());
+        if (usuarioExistente.isPresent() && !usuarioExistente.get().getId().equals(idUsuario)) {
+            throw new RuntimeException("El nombre de usuario '" + request.getUsername() + "' ya está en uso.");
+        }
+        
+        // 2. Aplicar los cambios
+        usuario.setUsername(request.getUsername());
+        
+        // 3. Codificar y aplicar la nueva contraseña
+        String encodedPassword = passwordEncoder.encode(request.getPassword());
+        usuario.setPassword(encodedPassword);
+        
+        // 4. Guardar y retornar
+        Usuario usuarioActualizado = usuarioRepository.save(usuario);
+        
+        return UsuarioMapper.mapToResponseDto(usuarioActualizado);
+    }       
     
 }

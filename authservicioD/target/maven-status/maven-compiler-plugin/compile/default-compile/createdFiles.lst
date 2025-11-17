@@ -19,6 +19,7 @@ carlos\mejia\authservi\dto\UsuarioResponseDto$UsuarioResponseDtoBuilder.class
 carlos\mejia\authservi\dto\ClienteRegistroRequestDto.class
 carlos\mejia\authservi\dto\UsuarioResponseDto.class
 carlos\mejia\authservi\dto\RegistroRequestDto.class
+carlos\mejia\authservi\dto\UsuarioUpdateCredencialesRequestDto.class
 carlos\mejia\authservi\service\AuthService.class
 carlos\mejia\authservi\entity\Usuario.class
 carlos\mejia\authservi\serviceimpl\UsuarioServiceImpl.class
